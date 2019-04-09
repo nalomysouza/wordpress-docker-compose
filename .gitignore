@@ -1,7 +1,5 @@
 .idea
-
+.env
 config
-wp-app
+wp-content
 wp-data
-wp-plugin
-wp-theme
