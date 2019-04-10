@@ -9,7 +9,6 @@ services:
       - ${IP}:8080:80 # change ip if required
     volumes:
       - ./config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
-      - ./config/wp-config.php:/var/www/html/wp-config.php # Configs wordpress
       - ./wp-content:/var/www/html/wp-content # Content wordpress
     environment:
       WORDPRESS_DB_HOST: db
@@ -19,24 +18,8 @@ services:
     depends_on:
       - db
     links:
-      - db
+      - db:wp-db-production
     restart: always
-
-  pma:
-    container_name: wp-pma-production
-    hostname: wp-pma-production
-    image: phpmyadmin/phpmyadmin
-    environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
-      MYSQL_ROOT_USER: "${DB_ROOT_USER}"
-      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
-    ports:
-      - ${IP}:8081:80
-    links:
-      - db
-    depends_on:
-      - db
 
   db:
     container_name: wp-db-production
