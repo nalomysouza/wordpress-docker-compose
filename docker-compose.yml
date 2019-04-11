@@ -15,6 +15,17 @@ services:
       WORDPRESS_DB_NAME: "${DB_NAME}"
       WORDPRESS_DB_USER: "${DB_ROOT_USER}"
       WORDPRESS_DB_PASSWORD: "${DB_ROOT_PASSWORD}"
+      WORDPRESS_CONFIG_EXTRA: |
+        define (’WPLANG’, ‘pt_BR’);
+        /* Multisite */
+        #define('WP_ALLOW_MULTISITE', true ); # modifique se for habilitar o multisite
+        /* Descomente as definições abaixo somente se multisite tiver habilitado */
+        #define('MULTISITE', true);
+        #define('SUBDOMAIN_INSTALL', false);
+        #define('DOMAIN_CURRENT_SITE', 'localhost'); # defina o dns base do multisite.
+        #define('PATH_CURRENT_SITE', '/');
+        #define('SITE_ID_CURRENT_SITE', 1);
+        #define('BLOG_ID_CURRENT_SITE', 1);
     depends_on:
       - db
     links:
