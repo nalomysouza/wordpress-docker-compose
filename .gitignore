@@ -1,5 +1,5 @@
 .idea
 .env
 config
-wp-content
-wp-data
+wp-content/*
+wp-data/*
